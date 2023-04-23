@@ -7,7 +7,7 @@
 }
 body{
     background-image: url(img/noite-estrelada.jpg);
-	backdrop-filter:blur(3px);
+	backdrop-filter:blur(8px);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -17,7 +17,7 @@ body{
     padding: 20px;
     min-height: 100vh;
 }
-.w50{
+.S2{
     width: 50%;
     float: left;
     padding-right: 15px;
@@ -26,26 +26,16 @@ body{
     display: flex;
     width: 930px;
 }
-
-.img-box{
-    background-color: rgba(255, 255, 255, 0.5);
-    width: 50%;
-    display: flex;
-    align-items: center;
-    padding: 20px;
-    border-radius: 20px  0 0 20px;
-}
-.img-box img{
-    width: 100%;
-}
 .form-box{
-    background-color: rgba(255, 255, 255, 0.4);
-    backdrop-filter: blur(40px);
+    background-color: rgba(153, 156, 180, 0.452);
+    backdrop-filter: blur(30px);
     padding: 30px 40px;
-    width: 50%;
-    border-radius: 0 20px 20px 0;
+    width: 70%;
+    border-radius: 50px 50px 50px 50px;
+    margin:auto;
 }
 .form-box h2{
+    text-align: center;
     font-size: 18px;
 }
 .form-box p{
@@ -71,7 +61,7 @@ form .input-group label{
 form .input-group input{
     width: 100%;
     height: 47px;
-    background-color: rgba(255, 255, 255, 0.32);
+    background-color: #ffff;
     border-radius: 20px;
     outline: none;
     border: 2px solid transparent;
@@ -101,9 +91,6 @@ form .input-group button{
 }
 
 @media (max-width:930px) {
-    .img-box{
-        display: none;
-    }
     .box{
         width: 700px;
     }
@@ -113,7 +100,7 @@ form .input-group button{
     }
 }
 @media (max-width:500px) {
-    .w50{
+    .S2{
         width: 100%;
         padding: 0;
     }
