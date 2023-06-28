@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/outros_forms.css">
+    <title>KAHLO - Criar Postagem</title>
+</head>
+
+<body>
+    <div class="box">
+        <div id="dark-btn"></div>
+        <div class="form-box">
+          <h2><img src="img/kazinho3.svg"><br>Crie sua postagem e mostre sua arte para outros!</h2>
+
+            <form>
+
+                <div class="input-group">
+                    <label for="nome">Foto</label>
+                    <label class="picture" for="picture__input" tabIndex="0">
+                    <span class="picture__image"></span>
+                  </label>
+                  
+                  <input type="file" name="picture__input" id="picture__input">
+                <br>
+                <div class="input-group">
+                    <label for="nome">Legenda</label>
+                    <textarea rows="3" placeholder="   Digite aqui mais algumas informações sobre o grupo que quer criar"></textarea>
+                </div>
+                <div class="input-group">
+                    <button type="submit">Criar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+<script src="js/foto.js"></script>
+<script src="js/scripts.js"></script>
+</body>
+</html>

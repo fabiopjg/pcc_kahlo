@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/outros_forms.css">
+    <title>KAHLO - Criar Grupo</title>
+</head>
+
+<body>
+    <div class="box">
+        <div id="dark-btn"></div>
+        <div class="form-box">
+          <h2><img src="img/kazinho3.svg"><br>Crie seu próprio grupo e compartilhe suas experiencias com outros artistas</h2>
+
+            <form>
+
+                <div class="input-group">
+                    <label for="nome">Nome do grupo</label>
+                    <input type="text" id="nome" placeholder="Digite aqui o nome do grupo" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="nome">Foto da capa do grupo</label>
+                    <label class="picture" for="picture__input" tabIndex="0">
+                    <span class="picture__image"></span>
+                  </label>
+                  
+                  <input type="file" name="picture__input" id="picture__input">
+                <br>
+                <div class="input-group">
+                    <label for="nome">Biografia do Grupo</label>
+                    <textarea rows="3" placeholder="   Digite aqui mais algumas informações sobre o grupo que quer criar"></textarea>
+                </div>
+
+                <div class="input-group">
+                    <label for="nome">Escolha os participantes</label>
+                    <select id="nome" multiple>
+                        <option value="1">Frida Kahlo</option>
+                        <option value="2">Leonardo da Vinci</option>
+                        <option value="3">Pablo Picasso</option>
+                        <option value="4">Tarcila do Amaral</option>
+                        <option value="5">Carlos Drummond</option>
+                        <option value="6">Anita Malfatti</option>
+                        <option value="7">Fernando Pessoa</option>
+                        <option value="8">Cecília Meireles</option>
+                        <option value="9">Conceição Evaristo</option>
+                        <option value="10">Ariano Suassuna</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <button type="submit">Criar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+<script src="js/foto.js"></script>
+<script src="js/scripts.js"></script>
+</body>
+</html>
