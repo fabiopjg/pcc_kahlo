@@ -1,0 +1,15 @@
+{% block content %}
+
+<h3>Conversar</h3>
+
+<form method="GET" action="{% url 'create-conexao' %}">
+    <button type="submit">Começar uma conversa</button>
+</form>
+
+{% for conexao in conexoes.all %}
+
+<a href="{% url 'conexao' conexao.pk %}"><h3>{{ conexao.user }} - {{ conexao.receiver }}</h3></a>
+
+{% endfor %}
+
+{% endblock content %}

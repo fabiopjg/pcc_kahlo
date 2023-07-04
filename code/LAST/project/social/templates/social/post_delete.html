@@ -1,0 +1,15 @@
+{% load crispy_forms_tags %}
+
+{% block content %}
+				
+<p>FAZER UPDATE</p>
+
+<form method="POST">
+    {% csrf_token %}
+    <h5>Você tem certeza que quer deleter a sua publicação?</h5>
+    <div class="d-grid gap-2 mt-3">
+        <button class="btn btn-success">Deletar</button>
+    </div>
+</form>
+
+{% endblock content %}

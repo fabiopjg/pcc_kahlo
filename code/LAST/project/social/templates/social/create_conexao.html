@@ -1,0 +1,27 @@
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<a href="{% url 'inbox' %}">Voltar para a caixa de mensagens.</a>
+
+<h3>Comece uma coneversa</h3>
+
+{% if messages %}
+
+    {% for message in messages %}
+
+        {{ message }}
+
+    {% endfor %}
+{% endif %}
+<form method="POST">
+    {% csrf_token %}
+    <p>Coloque o nome de quem você gostaria de conversar</p>
+    {{ form | crispy }}
+
+    <button type="submit">Continue</button>
+
+
+</form>
+
+{% endblock content %}

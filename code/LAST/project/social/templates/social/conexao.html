@@ -1,0 +1,35 @@
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+{% if conexao.receiver == request.user %}
+
+    <h5>@{{ conexao.user }}</h5>
+{% else %}
+    <h5>@{{ conexao.receiver }}</h5>
+{% endif %}
+
+{% if mensagem_list.all.count == 0 %}
+    <p>Não há mensagens</p>
+{% endif %}
+
+{% for mensagem in mensagem_list %}
+    {% if mensagem.sender_user == request.user %}
+
+    <p>{{ mensagem.corpo }}</p>
+
+    {% elif mensagem.receiver_user == request.user %}
+
+
+    <p>{{ mensagem.corpo }}</p>
+    {% endif %}
+{% endfor %}
+
+<form method="POST" action="{% url 'create-mensagem' conexao.pk %}" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form | crispy }}
+
+    <button type="submit">Mandar mensagem</button>
+</form>
+
+{% endblock content %}

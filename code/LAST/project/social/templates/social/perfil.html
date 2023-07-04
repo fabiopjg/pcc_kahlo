@@ -1,0 +1,202 @@
+{% load crispy_forms_tags %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!--link do estilo css-->
+	<link href="{% static 'css/style.css' %}" rel="stylesheet">
+	<title>KAHLO - Meu Perfil</title>
+</head>
+
+{% block content %}
+
+<body>
+	<nav>
+		<!--início busca e logo-->
+		<div class="nav-left">
+			<div class="logo"><img src="img/logo.png"></div>
+		</div>
+			<!--fim busca e logo-->
+
+			<!--início foto de perfil-->
+		<div class="nav-rigth">
+			<img src="img/sino.png" alt="notificações">
+			<img src="img/foto_perfil.svg" alt="foto de perfil">
+		</div>
+			<!--fim foto de perfil-->
+	</nav>
+
+	<!--início corpo site-->
+	<div class="container">
+
+		<!--início sidebar esquerda-->
+		<div class="left-sidebar">
+        <div class="links">
+            <a href="{% url 'post-list' %}"><img src="../../static/img/icon_principal.png">Principal</a>
+
+            {% if user.is_authenticated %}
+            <a href="grupos.html"><img src="../../static/img/icon_grupo.png">Grupos</a>
+            <a href="eventos.html"><img src="../../static/img/icon_eventos.png">Eventos</a>
+            <a href="perfil.html"><img src="../../static/img/icon _perfil.png">Meu Perfil</a>
+            <a href="#"><img src="../../static/img/icon_favoritos.png">Favoritos</a>
+            <a href="#"><img src="../../static/img/icon_meusgrupos.png">Meus Grupos</a>
+            {% endif %}
+
+        </div>
+		<div class="outros">
+			<p>OUTROS</p>
+			<a href="#"><img src="../../static/img/icon_artistas.png">Artistas</a>
+			<a href="https://www.instagram.com/"><img src="../../static/img/icon_instagram.png">Instagram</a>
+			<a href="https://www.twitter.com/"><img src="../../static/img/icon_twitter.png">Twitter</a>
+			<a href="#"><img src="../../static/img/icon_modo.png">Claro/Escuro</a><div id="dark-btn"><span></span></div>
+			
+            {% if user.is_authenticated %}
+            <a href="{% url 'account_logout' %}"><img src="../../static/img/icon_sair.png">Sair</a>	
+            {% endif %}		
+		</div>
+        </div>
+		<!--fim sidebar esquerda-->
+
+		<!--início conteúdo site-->
+		<div class="main-content">
+		<!--início quadro de grupo-->
+			<div class="quadro-perfil">
+				<div class="conteudo-perfil">
+					<img src="{{ perfil.foto.url }}" alt="foto de perfil">
+                    
+                    {% if perfil.nome %}
+					
+					<h3>{{ perfil.nome }} 
+						<span>
+                            {% if request.user == user %} 
+								<a  href="{% url 'perfil-edit' perfil.pk %}">Editar Perfil</a>
+                            {% endif %}
+                        </span>
+							
+                        {% else %}
+
+                        <h3>{{ user.username }}
+                            <span>
+                                    {% if request.user == user %}
+                                        <a href="{% url 'perfil-edit' perfil.pk %}">Editar Perfil</a>
+                                    {% endif %}
+                                </span>
+                            </h3>
+
+                        {% endif %}
+					</h3>
+                         
+                        
+
+
+                    {% if perfil.localizacao %}
+                        <p>Localização: {{ perfil.localizacao }}</p>
+                    {% endif %}
+
+                    {% if perfil.aniversario %}
+                        <p>Aniversário: {{ perfil.aniversario }}</p>
+                    {% endif %}
+
+                    {% if perfil.bio %}
+                        <p>{{ perfil.bio }}</p>
+                    {% endif %}
+
+					
+					<a type="button" href="criar_postagem.html">Publicar</a>
+				</div>
+
+                
+			</div>
+        </div>
+
+        <a href="{% url 'list-seguidores' perfil.pk %}">Seguidores: {{ numero_seguidores }}</a>
+        {% if user == request.user %}
+        {% else %}
+        {% if is_seguindo %}
+                <form method="POST" action="{% url 'remove-seguidor' perfil.pk %}">
+                    {% csrf_token %}
+                    <button type="submit">Unfollow</button>
+                </form>
+                {% else %}
+                <form method="POST" action="{% url 'add-seguidor' perfil.pk %}">
+                    {% csrf_token %}
+                    <button type="submit">Follow</button>
+                </form>
+                {% endif %}
+                {% endif %}
+
+		<!--fim quadro de grupo-->
+			<div class="opcoes-perfil">
+				<h4>Publicações</h4>
+			</div>
+
+            {% for post in posts %}
+                <div class="post">
+                    <a href="{% url 'perfil' post.autor.perfil.pk %}">
+						<img class="foto_perfil" src="{{ post.autor.perfil.foto.url }}" />
+					</a>
+                    <p><a style="text-decoration: none" href="{% url 'perfil' post.autor.perfil.pk %}"
+                        >@{{post.autor }} </a> {{ post.criado_em }} </p>
+					
+					{% if post.image %}
+						<img src="{{ post.image.url }}">
+					{% endif %}
+                    <p>{{ post.corpo }}</p>  
+                </div>
+
+                <a href="{% url 'post-detail' post.pk %}"><button>Comentar</button></a>
+
+                <form method="POST" action="{% url 'like' post.pk %}">
+					{% csrf_token %}
+					<input type="hidden" name="next" value="{{ request.path }}">
+					<button type="submit">Amei
+						<span> {{ post.likes.all.count }} </span>
+					</button>
+				</form>
+                
+			{% endfor %}
+
+			<!--fim mais opcoes-->
+
+			<!-- início post feed
+			<div class="post-container">
+				<div class="post">
+					<div class="user-profile">
+						<img src="img/foto_perfil.svg" alt="">
+					<p>@van_gogh68</p>
+					</div>
+					<a href="#"><i class="fa-solid fa-ellipsis-v" onclick="abreConfig()"></i></a>
+					<div class="post-config">
+						<div class="config">
+							<a href="#"><i class="fa-solid fa-trash"></i>
+							<p>Excluir post</p></a>
+						</div>
+					</div>
+				</div>
+				<p class="legenda"><i>"A Noite Estrelada"(1889) é uma das mais conhecidas pinturas do artista holandês pós-impressionista Vincent Van Gogh. Esta obra-prima retrata a paisagem do lado de fora da janela do quarto do artista enquanto esteve no sanatório de Saint-Rémy-de-Provencea.</i></p>
+				<img src="img/post-1.png" class="post-img">
+
+				<div class="post">
+					<div class="ativar-icones">
+						<div><img src="img/curtida.png" alt="">47</div>
+						<div><img src="img/comentario.png" alt="">30</div>
+						<div><img src="img/favoritar.png" alt="">15</div>
+					</div>
+				</div>
+			</div>-->
+			
+
+		<!--fim conteúdo site-->
+
+	</div>
+	<!--fim corpo site-->
+<script src="js/scripts.js"></script>
+</body>
+
+{% endblock content %}
+<script src="https://kit.fontawesome.com/58b7504213.js" crossorigin="anonymous"></script>
+</html>

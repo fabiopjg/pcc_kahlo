@@ -1,0 +1,18 @@
+{% block content %}
+
+{% if perfil.nome %}
+
+<h3>Seguidores de {{ perfil.nome }}</h3>
+{% else %}
+<h3>Seguidores de @{{ perfil.user.username }}</h3>
+
+{% endif %}
+
+{% for seguidor in seguidores %}
+
+<a href="{% url 'perfil' seguidor.perfil.pk %}"><img src="{{ seguidor.perfil.foto.url }}"></a>
+<a href="{% url 'perfil' seguidor.perfil.pk %}"><h5>@{{ seguidor.username }}</h5></a>
+
+{% endfor %}
+
+{% endblock content %}

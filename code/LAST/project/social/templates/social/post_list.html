@@ -1,0 +1,156 @@
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!--link do estilo css-->
+	<link href="{% static 'css/style.css' %}" rel="stylesheet">
+	
+	<title>KAHLO - Feed</title>
+</head>
+
+{% block content %}
+
+<body>
+	<nav>
+		<!--início busca e logo-->
+		<div class="nav-left">
+			<div class="logo">
+				<img src="../../static/img/logo.png">
+			</div>
+			
+			<form method="GET" action="{% url 'perfil-pesquisa' %}">
+				<div class="search-box">
+					<button class="button1" type="submit">
+						<img src="../../static/img/lupa.png" alt="ícone de busca">
+					</button>
+					<input type="text" id="nome" placeholder="Descubra outros artistas"
+					aria-describedby="basic-addon1" name="query" value="{{ request.GET.query }}">
+				</div>
+			</form>
+
+		</div>
+			<!--fim busca e logo-->
+
+			<!--início foto de perfil-->
+		<div class="nav-rigth">
+			<img src="../../../static/img/sino.png" alt="notificações">
+		</div>
+			<!--fim foto de perfil-->
+	</nav>
+
+	<!--início corpo site-->
+	<div class="container">
+
+		<!--início sidebar esquerda-->
+		<div class="left-sidebar">
+        <div class="links">
+            <a href="{% url 'post-list' %}"><img src="../../static/img/icon_principal.png">Principal</a>
+
+            {% if user.is_authenticated %}
+            <a href="{% url 'inbox' %}"><img src="../../static/img/icon_grupo.png">Grupos</a>
+            <a href="eventos.html"><img src="../../static/img/icon_eventos.png">Eventos</a>
+            <a href="perfil.html"><img src="../../static/img/icon _perfil.png">Meu Perfil</a>
+            <a href="#"><img src="../../static/img/icon_favoritos.png">Favoritos</a>
+            <a href="#"><img src="../../static/img/icon_meusgrupos.png">Meus Grupos</a>
+            {% endif %}
+
+        </div>
+		<div class="outros">
+			<p>OUTROS</p>
+			<a href="#"><img src="../../static/img/icon_artistas.png">Artistas</a>
+			<a href="https://www.instagram.com/"><img src="../../static/img/icon_instagram.png">Instagram</a>
+			<a href="https://www.twitter.com/"><img src="../../static/img/icon_twitter.png">Twitter</a>
+			<a href="#"><img src="../../static/img/icon_modo.png">Claro/Escuro</a><div id="dark-btn"><span></span></div>
+			
+            {% if user.is_authenticated %}
+            <a href="{% url 'account_logout' %}"><img src="../../static/img/icon_sair.png">Sair</a>	
+            {% endif %}		
+		</div>
+        </div>
+		<!--fim sidebar esquerda-->
+
+		<!--início conteúdo site-->
+		<div class="main-content">
+		<!--início quadro de grupo-->
+			<div class="quadro">
+				<div class="conteudo-img">
+					<p>Crie a sua coleção<br>em conjunto com<br>outros artistas.</p>
+					<div class="button1"><a type="button" href="criar_grupo.html">Criar</a></div>
+					<div class="button2"><a type="button" href="#">Procurar</a></div>
+				</div>
+			</div>
+		<!--fim quadro de grupo-->
+			
+			<div class="opcoes">
+				<h4>Obras Recentes</h4>
+			</div>
+
+			<!-- início post feed-->
+			<div class="post-container">
+
+                {% if user.is_authenticated %}
+
+				<form method="POST" enctype="multipart/form-data">
+					
+					{% csrf_token %}
+					{{ form | crispy }}
+
+					<div class="d-grid gap-2 mt-3">
+						<button class="btn btn-success">Postar!</button>
+					</div>
+
+				</form>
+                
+				{% endif %}
+
+				{% for post in post_list %}
+				  
+                <div class="outros">
+					<a href="{% url 'perfil' post.autor.perfil.pk %}">
+						<img class="foto_perfil" src="{{ post.autor.perfil.foto.url }}" />
+					</a>
+                    <p><a style="text-decoration: none" href="{% url 'perfil' post.autor.perfil.pk %}"
+                        >@{{post.autor }} </a> {{ post.criado_em }} </p>
+					{% if post.image %}
+						<img src="{{ post.image.url }}">
+					{% endif %}
+                    <p>{{ post.corpo }}</p>  
+                </div>
+
+                <a href="{% url 'post-detail' post.pk %}"><button>Comentar</button></a>
+
+				<form method="POST" action="{% url 'like' post.pk %}">
+					{% csrf_token %}
+					<input type="hidden" name="next" value="{{ request.path }}">
+					<button type="submit">Amei
+						<span> {{ post.likes.all.count }} </span>
+					</button>
+				</form>
+
+				{% endfor %}
+
+			</div>
+			<!-- início post feed-->
+		</div>
+		<!--fim conteúdo site-->
+
+		<!--início sidebar direita-->
+		<div class="right-sidebar">
+
+		</div>	
+		<!--fim sidebar direita-->
+	</div>
+	<!--fim corpo site-->
+<script src="../../static/js/scripts.js"></script>
+</body>
+
+{% endblock content %}
+
+</html>
+
