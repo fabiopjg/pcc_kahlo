@@ -1,0 +1,38 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{% static 'css/outros_forms.css' %}" >
+        <title>KAHLO - Deletar</title>
+    </head>
+
+    <body>
+
+    {% block content %}
+
+    <div class="box">
+        <div id="dark-btn"></div>
+        <div class="form-box">
+          <h2>
+            <a href="{% url 'post-detail' object.pk %}" >
+              <img  src="{% static 'img/kazinho3.svg'%}"></a><br>Tem certeza?<br>Sua publicação será deletada permanetemente.</h2>
+
+              
+          <form class="input-group" method="POST">
+
+            {% csrf_token %}
+
+            <div class="input-group">
+              <button > Deletar </button>
+            </div>
+          </form>
+
+    {% endblock content %}
+
+    </body>
+</html>

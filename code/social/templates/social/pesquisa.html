@@ -1,0 +1,23 @@
+{% block content %}
+
+<a href="{% url 'post-list' %}"><img src="../../static/img/icon_principal.png">Principal</a>
+
+{% for perfil in perfil_list %}
+
+    <a href="{% url 'perfil' perfil.pk %}">
+        <img class="foto_perfil" src="{{ perfil.foto.url }}" />
+    </a>
+    <p><a style="text-decoration: none" href="{% url 'perfil' perfil.pk %}"
+        >@{{perfil.user }} </a></p>
+
+    <p>
+        <a href="{% url 'perfil' perfil.pk %}">@{{ perfil.user }}</a></p>
+
+        {% if perfil.localizacao %}
+            <p>{{ perfil.localizacao }}</p>
+        {% endif %}
+        <p>Seguidores: {{ perfil.seguidores.all.count }}</p>
+
+{% endfor %}
+
+{% endblock content %}
