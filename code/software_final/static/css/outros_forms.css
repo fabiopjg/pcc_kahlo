@@ -1,0 +1,170 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap');
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+:root{
+    --body-color: #f1f1f1;
+    --font-color: #6c6b6d;
+    --fundo-form: rgba(153, 156, 180, 0.452);
+    --text-form: #080e24;
+}
+
+.dark-theme{
+    --body-color: #0f0f0f;
+    --font-color: #ffff;
+    --fundo-form: #000;
+    --text-form: #ffff;
+}
+
+body{
+    background: var(--body-color);
+	backdrop-filter:blur(8px);
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+.box{
+    display: flex;
+    width: 930px;
+}
+.form-box{
+    background-color: var(--fundo-form);
+    backdrop-filter: blur(30px);
+    padding: 30px 40px;
+    width: 80%;
+    border-radius: 50px 50px 50px 50px;
+    margin:auto;
+}
+.form-box h2{
+    color: var(--text-form);
+    text-align: center;
+    font-size: 20px;
+}
+.form-box form{
+    margin: 20px 0;
+}
+form .input-group{
+    margin-bottom: 15px;
+}
+form .input-group label{
+    color: var(--text-form);
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+form .input-group input{
+    width: 100%;
+    height: 47px;
+    background-color: #ffff;
+    border-radius: 20px;
+    outline: none;
+    border: 2px solid transparent;
+    padding: 15px;
+    font-size: 15px;
+    color: #5a5861;
+    transition: all 0.4s ease;
+}
+
+.input-group textarea{
+    width: 100%;
+    border-radius: 10px;
+    border: none;
+    font-size: 16px;
+}
+
+.input-group select{
+    color: #080e24;
+    font-size: 16px;
+    border: none;
+    width: 50%;
+}
+#dark-btn{
+    position: absolute;
+    background: transparent;
+}
+#dark-btn span{
+    position: absolute;
+    background: transparent;
+}
+#dark-btn.dark-btn-on{
+    padding-left: 23px;
+    background: #0a0a0a;
+}
+form .input-group input:focus{
+    border-color: #333644;
+}
+form .input-group button{
+    width: 100%;
+    height: 47px;
+    background: #87738e;
+    border-radius: 20px;
+    outline: none;
+    border: none;
+    margin-top: 15px;
+    color: var(--text-form);
+    cursor: pointer;
+    font-size: 16px;
+	font-weight: bold;
+    float: left;
+    padding-right: 15px;
+}
+.input-group button:hover{
+    background-color: rgb(102, 38, 104);
+    transition: 0.2s ease;
+}
+#picture__input {
+    display: none;
+}
+
+.picture {
+border-radius: 10px;
+width: 660px;
+aspect-ratio: 16/5;
+background: rgba(168, 171, 194, 0.452);
+display: flex;
+align-items: center;
+justify-content: center;
+border: 2px dashed currentcolor;
+cursor: pointer;
+transition: color 300ms ease-in-out, background 300ms ease-in-out;
+outline: none;
+overflow: hidden;
+}
+
+.picture__image{
+text-align: center;
+padding-left: 35%;
+color: var(--font-color);
+}
+
+.picture:hover {
+color: #777;
+background: #ccc;
+}
+
+.picture:focus {
+color: #777;
+background: #ccc;
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.picture__img {
+max-width: 100%;
+}
+
+@media (max-width:930px) {
+    .box{
+        width: 700px;
+    }
+    .form-box{
+        width: 100%;
+        border-radius: 20px;
+    }
+}
+

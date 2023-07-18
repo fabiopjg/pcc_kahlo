@@ -1,0 +1,44 @@
+{% load static %}
+{% load crispy_forms_tags %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/register.css' %}">
+    <title>KAHLO - Tela de Cadastro</title>
+</head>
+
+{% block content %}
+
+  <body>
+    <div class="box">
+        <div class="form-box">
+          <h2><img src="img/kazinho3.svg"><br>Complete o formulário para se cadastrar <br> em KAHLO.</h2>
+            <br>
+            <p>Se já for um membro, clique aqui: <a href="{{ login_url }}"> Login </a></p>
+            
+            <form method="post" action="{% url 'account_signup' %}">
+
+              <div class="input-group">
+                {% csrf_token %}
+                {{ form|crispy }}
+              </div>
+
+              <div class="input-group">
+                  <input value="Cadastrar-se" type="submit"></input>
+              </div>
+            </form>
+        </div>
+    </div>
+  </body>
+
+{% endblock %}
+
+</html>
+
+
+

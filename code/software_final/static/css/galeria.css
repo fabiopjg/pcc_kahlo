@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap');
+* {
+    box-sizing: border-box;
+}
+
+:root{
+    --body-color: #f1f1f1;
+    --title-color: #27262E;
+}
+
+.dark-theme{
+    --body-color: #000;
+    --title-color: #ffff;
+}
+
+body{
+    background-color: var(--body-color);
+    font-family: 'Pupins', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    min-height: 10vh;
+}
+.title{
+    margin: 10px 0 0;
+    text-align: center;
+}
+h1{
+    color: var(--title-color);
+}
+#dark-btn{
+    position: absolute;
+    background: transparent;
+}
+#dark-btn span{
+    position: absolute;
+    background: transparent;
+}
+#dark-btn.dark-btn-on{
+    padding-left: 23px;
+    background: #0a0a0a;
+}
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 1000px;
+}
+.container img{
+    object-fit: cover;
+    margin: 10px;
+    height: 300px;
+    width: 300px;
+}

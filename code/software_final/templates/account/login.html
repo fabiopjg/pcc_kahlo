@@ -1,0 +1,52 @@
+{% load i18n %}
+{% load account socialaccount %}
+
+{% load crispy_forms_tags %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/tellogin.css' %}" >
+    <title>KAHLO - Login</title>
+</head>
+  <body>
+
+    {% block content %}
+
+    <div class="container-login">
+      <div class="content-box">
+          <div class="form-box">
+              <h2><img src="{% static 'img/kazinho3.svg' %}"><br>Que bom te ver aqui novamente.</h2>
+
+              <form class="input-box" method="POST" action="{% url 'account_login' %}">
+                
+                {% csrf_token %}
+                {{ form|crispy }}
+                
+                <input class="input-box" type="submit" value="Entrar"></input>
+            
+              </form>
+
+              <div class="input-box">
+                  <p>Ainda não tem uma conta?<br>Registre-se com o botão abaixo.</p><a href="{{ signup_url }}">Cadastrar-se</a>
+              </div>
+          </div>
+      </div>
+      
+      <div class="img-box">
+          <img src="{% static 'img/grama.png' %}">
+      </div>
+    </div>
+
+    {% endblock content %}
+
+  </body>
+</html>
+
+
+                

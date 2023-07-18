@@ -1,0 +1,141 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap');
+* {
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+body{
+    background-color: #B8CDB7;
+}
+
+.container-login {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+}
+
+.img-box {
+    width: 50%;
+    height: 100%;
+    padding: 0px;
+}
+
+.img-box img {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    padding: 0px 40px 0px 40px;
+}
+
+.content-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    background-color: #B8CDB7;
+    backdrop-filter: blur(100px);
+}
+
+.form-box {
+    width: 70%;
+    height: 650px;
+    background: rgba(111, 123, 111, 0.24);
+    backdrop-filter: blur(30px);
+    padding: 30px 40px;
+    border-radius: 50px;
+}
+
+.form-box h2 {
+    font-weight: bold;
+    color: #141C39;
+    font-size: 18px;
+    margin-bottom: 15px;
+    text-align: center;
+    padding: 18px;
+}
+
+.input-box {
+    margin-bottom: 20px;
+}
+
+.input-box input {
+    width: 100%;
+    padding: 10px;
+    outline: none;
+    font-weight: 400;
+    border: none;
+    font-size: 17px;
+    color: #6F6E73;
+    background-color: #fff;
+    border-radius: 20px;
+}
+
+.input-box span {
+    font-size: 16px;
+    margin-bottom: 5px;
+    display: inline-block;
+    color: #141C39;
+    font-weight: 400;
+    font-weight: bold;
+}
+
+.input-box input[type=submit] {
+    margin-left: 25%;
+    margin-top: 3%;
+    width: 50%;
+    background: #ffffff;
+    color: #141C39;
+    outline: none;
+    border: none;
+    font-weight: 500;
+    cursor: pointer;
+    font-size: 17px;
+    font-weight: bold;
+    transition: 0.3s;
+    border-radius: 50px;
+}
+
+.input-box input[type=submit]:hover {
+    background: #c2e6f1;
+}
+
+.input-box p {
+    text-align: center;
+    padding-top: 3%;
+    padding-bottom: 5%;
+    color: #0f162e;
+    font-weight: 400;
+    font-weight: bold
+}
+.input-box a{
+    display: block;
+    color: #141C39;
+    text-decoration: none;
+    text-align: center;
+    background-color: transparent;
+    border: 2px solid #141C39;
+    border-radius: 50px;
+    padding: 12px;
+    cursor: pointer;
+    font-size: 17px;
+    font-weight: bold;
+    margin-left: 25%;
+    width: 50%;
+}
+.input-box a:hover {
+    background: #6c8d96;
+}
+@media (max-width:868px) {
+    .img-box{
+        display: none;
+    }
+    .content-box{
+        width: 100%;
+    }
+    .form-box{
+        width: 100%;
+        padding: 40px;
+        margin: 50px;
+    } 
+}
