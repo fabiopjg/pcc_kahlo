@@ -1,0 +1,147 @@
+<!-- CÓPIA --> 
+
+{% load crispy_forms_tags %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!--link do estilo css-->
+	<link rel="stylesheet" href="{% static 'css/feed.css' %}">
+	<title>KAHLO - Feed</title>
+</head>
+
+{% block content %}
+<body>
+	{% if user.is_authenticated%}
+	
+	<nav>
+		<!--início busca e logo-->
+		<div class="nav-left">
+			<div class="logo"><img src="{% static 'img/logo.png' %}"></div>
+	</nav>
+
+	<!--início corpo site-->
+	<div class="container">
+
+		<!--início sidebar esquerda-->
+		<div class="left-sidebar">
+			<div class="links">
+				<a href="{% url 'post-list' %}"><img src="{% static 'img/icon_principal.png' %}">Principal</a>
+				<a href="{% url 'perfil' request.user.perfil.pk %}"><img src="{% static 'img/icon _perfil.png' %}">Meu Perfil</a>
+	
+				<a href="{% url 'inbox' %}"><img src="{% static 'img/icon_chat.png' %}">Chat</a>
+	
+			</div>
+			<div class="outros">
+				<p>OUTROS</p>
+				<a href="fotografias.html"><img src="{% static 'img/icon_artistas.png' %}">Artistas</a>
+				<a href="https://www.instagram.com/"><img src="{% static 'img/icon_instagram.png' %}">Instagram</a>
+				<a href="https://www.twitter.com/"><img src="{% static 'img/icon_twitter.png' %}">Twitter</a>
+	
+				<a href="{% url 'account_logout' %}"><img src="{% static 'img/icon_sair.png' %}">Sair</a>			
+			</div>
+			</div>
+		<!--fim sidebar esquerda-->
+
+		<!--início conteúdo site-->
+		<div class="main-content">
+		<!--início quadro de grupo-->
+
+		<!--fim quadro de grupo-->
+			
+            <div class="opcoes">
+				<h4>Publicação</h4>
+			</div>
+
+            <div class="box">
+                <div class="user-profile"></div>	
+                
+                <div class="post">
+                    <p><a style="text-decoration: none">@{{post.autor }}</a> {{ post.criado_em }} </p>
+                
+                    <div class="corpo_post">
+                        <p>{{ post.corpo }}</p>
+                    </div>
+
+                    <form method="POST" action="{% url 'like' post.pk %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="next" value="{{ request.path }}">
+                        <a class="like_button">
+                            <button type="submit"> Amei:
+                                <span> {{ post.likes.all.count }} </span>
+                            </button>
+                        </a>
+                    </form>
+
+                    {% if request.user == post.autor %}
+                        <a href="{% url 'post-delete' post.pk %}"><button class="button_delete">Deletar</button></a>
+                       
+                        <a href="{% url 'post-edit' post.pk %}"><button class="button_edit">Editar</button></a>
+                    {% endif %}
+
+                </div>
+            </div>
+
+            <div class="box">
+				<div class="form-box">
+					<form class="input-group" method="POST">
+						
+						{% csrf_token %}
+						{{ form | crispy }}
+		
+						<div>
+							<button class="button_post">Comentar</button>
+						</div>
+		
+					</form>
+				</div>
+			</div>
+
+			<div class="opcoes_2">
+				<h4>Comentários</h4>
+			</div>
+
+            {% for comentario in comentarios %}
+
+            <div class="box">
+                <div class="post">
+					<div>
+						<a class="foto_perfil" href="{% url 'perfil' comentario.autor.perfil.pk %}">
+							<img src="{{ comentario.autor.perfil.foto.url }}">
+						</a>
+						<p><a href="{% url 'perfil' comentario.autor.perfil.pk %}" style="text-decoration: none">@{{comentario.autor }}</a> {{ comentario.criado_em }} </p>
+					</div>
+                    
+
+                    <div class="corpo_post">
+                        <p>{{ comentario.comentario }}</p>
+                    </div>
+
+                    {% if request.user == comentario.autor %}
+                        <a href="{% url 'comentario-delete' post.pk comentario.pk %}" ><button class="button_delete">Deletar</button></a>
+                    {% endif %}
+
+                </div>
+            </div>
+
+            <hr>
+
+            {% endfor %}
+
+		</div>
+
+		{% else %}
+
+		<a href="{% url 'account_login' %}">LOGIN</a>
+
+		{% endif %}
+
+	<!--fim corpo site-->
+<script src="js/scripts.js"></script>
+{% endblock content %}
+</body>
+</html>
