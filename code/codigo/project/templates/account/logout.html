@@ -1,0 +1,43 @@
+{% load static %}
+
+{% load i18n %}
+
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{% static 'css/outros_forms.css' %}" >
+        <title>KAHLO - Sair</title>
+    </head>
+
+    <div class="box">
+      <div id="dark-btn"></div>
+      <div class="form-box">
+        <h2>
+          <a href="#" >
+            <img  src="{% static 'img/kazinho3.svg'%}"></a><br>Você tem certeza que quer sair?</h2>
+
+
+
+              <form class="input-group" method="post" action="{% url 'account_logout' %}">
+                {% csrf_token %}
+                {% if redirect_field_value %}
+                <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+                {% endif %}
+                <div class="input-group">
+                <button class="btn btn-dark" type="submit">{% trans 'Sign Out' %}</button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+
+{% endblock %}
+
+

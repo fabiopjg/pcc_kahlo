@@ -1,0 +1,33 @@
+{% block content %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!--link do estilo css-->
+	<link rel="stylesheet" href="{% static 'css/feed.css' %}">
+	<title>KAHLO - Feed</title>
+</head>
+
+{% for perfil in perfil_list %}
+
+<br>
+
+<div class="box-search">
+    <div class="user-profile"></div>	
+        <div class="foto_perfil-pesquisa">
+            <a href="{% url 'perfil' perfil.pk %}">
+                <img class="foto_perfil" src="{{ perfil.foto.url }}" />
+            </a>
+            <p><a style="text-decoration: none" href="{% url 'perfil' perfil.pk %}">@{{perfil.user }} </a></p>
+        </div>
+
+</div>
+
+{% endfor %}
+
+{% endblock content %}

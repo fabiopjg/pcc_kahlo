@@ -1,0 +1,40 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="{% static 'css/inicial.css' %}" rel="stylesheet">
+        <title>Welcome!</title>
+    </head>
+
+    {% block content %}
+
+    <body>
+        <div class="container">
+            <main>
+                <div class="main__text">
+                    <h1>
+                        <img align="center" src="{% static 'img/kazinho3.svg' %}"><br><br>
+                        <strong>Welcome to <br>KAHLO</strong></h1>
+                    
+                    <p align="justify">
+                        O website KAHLO é uma plataforma feita para pessoas que desejam 
+                        despertar seu artista interior ou até mesmo descobrí-lo. Aqui você 
+                        pode compartilhar a sua arte, admirar a arte de outros artistas e também 
+                        conversar com eles.</p>
+
+                    <a type="button" href="{% url 'account_signup' %}">Cadastre-se</a>
+                    <a type="button" href="{% url 'account_login' %}">Fazer Login</a>
+                </div>
+                <div class="main__img">
+                    <img src="{% static 'img/init.png' %}">
+                </div>
+            </main>
+        </div>
+    </body>
+</html>
+{% endblock content %}
