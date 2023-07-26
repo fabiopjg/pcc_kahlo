@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap');
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+body{
+    background-image: url(../img/noite-estrelada.png);
+	backdrop-filter:blur(8px);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    min-height: 100vh;
+}
+.S2{
+    width: 50%;
+    float: left;
+    padding-right: 15px;
+}
+.box{
+    display: flex;
+    width: 930px;
+}
+.form-box{
+    background-color: rgba(153, 156, 180, 0.452);
+    backdrop-filter: blur(30px);
+    padding: 30px 40px;
+    width: 70%;
+    border-radius: 50px 50px 50px 50px;
+    margin:auto;
+}
+.form-box h2{
+    text-align: center;
+    font-size: 18px;
+}
+.form-box p{
+    font-weight: bold;
+    color: #080e24;
+}
+.form-box p a{
+    color: #0b2f58;
+    text-decoration: none;
+}
+.form-box p a:hover{
+    color: #190392;
+}
+.form-box form{
+    margin: 20px 0;
+}
+form .input-group{
+    margin-bottom: 15px;
+}
+form .input-group label{
+    color: #080e24;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+form .input-group input{
+    width: 100%;
+    height: 47px;
+    background-color: #ffff;
+    border-radius: 20px;
+    outline: none;
+    border: 2px solid transparent;
+    padding: 15px;
+    font-size: 15px;
+    color: #5a5861;
+    transition: all 0.4s ease;
+}
+
+form .input-group input:focus{
+    border-color: #333644;
+}
+form .input-group button{
+    width: 100%;
+    height: 47px;
+    background: #ffff;
+    border-radius: 20px;
+    outline: none;
+    border: none;
+    margin-top: 15px;
+    color: #141C39;
+    cursor: pointer;
+    font-size: 16px;
+	font-weight: bold;
+    float: left;
+    padding-right: 15px;
+}
+.input-group button:hover {
+    background: #97b3bb;
+}
+
+@media (max-width:930px) {
+    .box{
+        width: 700px;
+    }
+    .form-box{
+        width: 100%;
+        border-radius: 20px;
+    }
+}
+@media (max-width:500px) {
+    .S2{
+        width: 100%;
+        padding: 0;
+    }
+}
