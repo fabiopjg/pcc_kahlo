@@ -397,6 +397,11 @@ hr {
     flex-direction: column;
 }
 
+.conversa_opcao a {
+    width: 90%;
+    margin-right: 15px;
+}
+
 .conversa_opcao a button {
     width: 100%;
     height: 47px;
@@ -479,12 +484,23 @@ a button:hover{
     padding-top: 5px;
     display: flex;
     padding-bottom: 5px;
+    margin-left: 50px;
 }
 .opcoes_2 h4{
     font-weight: 700;
     font-size: 24px;
     color: var(--title-color);
-    padding-right: 30%;
+
+}
+
+.icon_buttons {
+    margin-left: 93%;
+    margin-top: 10px;
+}
+
+.icon_buttons a img {
+    width: 20px;
+    padding-left: 5px;
 }
 
 /* TITLE */
@@ -517,16 +533,16 @@ a button:hover{
     font-weight: normal;
 }
 
+
 .box-search{
-    display: flex;
-    width: 600;
+    display: inline-block;
+    width: 300px;
     background-color: #e7e4e4;
-    border-radius: 5px;
+    border-radius: 10px;
     align-items: center;
     justify-content: center;
     margin-top: 10px;
-    margin-left: 300px;
-    margin-right: 300px;
+    margin-left: 250px;
 }
 
 .foto_perfil-pesquisa {
@@ -546,8 +562,52 @@ a button:hover{
     justify-content: center;
 }
 
+.message_notfound{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
 
-/* SEGUIDORES */
+.button_principal button{
+    width: 100px;
+    font-size: 15px;
+    border: none;
+    outline: none;
+    background-color: #87738e;
+    color: white;
+    cursor: pointer;
+    border-radius: 10px;
+    align-items: center;
+    margin-left: 46%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.button_principal button:hover{
+    background-color: rgb(255, 255, 255);
+    color:#87738e;
+    transition: 0.2s ease;
+}
+
+
+
+.opcoes_obras{
+    padding-top: 5px;
+    display: flex;
+    padding-bottom: 5px;
+}
+.opcoes_obras h4{
+    font-weight: 700;
+    font-size: 24px;
+    color: var(--title-color);
+
+}
+
+.info_sempost {
+    margin-left: 6%;
+}
+
 
 
 

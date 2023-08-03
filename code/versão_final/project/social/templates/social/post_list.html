@@ -84,9 +84,14 @@
 				</div>
 			</div>
 
-			<div class="opcoes_2">
+			<div class="opcoes_obras">
 				<h4>Obras recentes</h4>
 			</div>
+
+
+			{% if post_list.all.count == 0 %}
+                <p>Não há postagens alheias ainda.</p>
+            {% endif %}
 
             {% for post in post_list %}
 
@@ -122,6 +127,11 @@
 								</button>
 							</a>
 						</form>
+
+						{% if request.user == post.autor %}
+                        	<a href="{% url 'post-delete' post.pk %}"><button class="button_delete">Deletar</button></a>
+						{% endif %}
+
 					</div>
 
                 </div>

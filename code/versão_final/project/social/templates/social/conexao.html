@@ -21,7 +21,7 @@
 
             <div class="top_chat">
                 <div class="button_principal">
-                    <a href="{% url 'inbox' %}"><button>Principal</button></a>
+                    <a href="{% url 'inbox' %}"><button>Voltar</button></a>
                 </div>
 
                 
@@ -40,7 +40,7 @@
             </div>
                 
             {% if mensagem_list.all.count == 0 %}
-                <p>Não há mensagens</p>
+                <p class="info_mensagem">Não há mensagens</p>
             {% endif %}
             
 

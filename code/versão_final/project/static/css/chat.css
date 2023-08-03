@@ -121,3 +121,8 @@ form button:hover{
     justify-content: center;
     padding-bottom: 20px;
 }
+
+.info_mensagem {
+    color: #f2f2f2;
+    margin-left: 44%;
+}

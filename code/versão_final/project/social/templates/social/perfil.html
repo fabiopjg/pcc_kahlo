@@ -15,7 +15,6 @@
 {% block content %}
 
 <body>
-	{% if user.is_authenticated%}
 	
 	<nav>
 		<div class="nav-left">
@@ -73,6 +72,7 @@
 				</a>
 				
 				{% if user == request.user %}
+				
 				{% else %}
 
 				{% if is_seguindo %}
@@ -80,13 +80,12 @@
 						{% csrf_token %}
 						<button type="submit">Deixar de seguir</button>
 					</form>
-
 				{% else %}
+
 					<form method="POST" action="{% url 'add-seguidor' perfil.pk %}">
 						{% csrf_token %}
 						<button type="submit">Seguir</button>
 					</form>
-
 				{% endif %}
 				{% endif %}
 
@@ -102,26 +101,32 @@
 			<div class="opcoes_2">
 				<h4>Publicações</h4>
 			</div>
-			
-        {% for post in posts %}
 
-            <div class="box-perfil">
-                <div class="user-profile"></div>	
-                    
-				<div class="post">
-					<p><a href="{% url 'perfil' post.autor.perfil.pk %}" style="text-decoration: none">@{{post.autor }}</a> {{ post.criado_em }} </p>
-					
-					<div class="corpo_post">
+			{% if posts.all.count == 0 %}
+                <p class="info_sempost">Você não publicou nada ainda.</p>
+            {% endif %}
+
+			
+        	{% for post in posts %}
+
+				<div class="box-perfil">
+					<div class="user-profile"></div>	
+						
+					<div class="post">
+						<p><a href="{% url 'perfil' post.autor.perfil.pk %}" style="text-decoration: none">@{{post.autor }}</a> {{ post.criado_em }} </p>
+						
+						<div class="corpo_post">
 							{% if post.image %}
 								<div class="post_image">
 									<img src="{{ post.image.url }}">
 								</div>
 							{% endif %}
 							<p>{{ post.corpo }}</p>  
-					</div>
+						</div>
+						
 						<a href="{% url 'post-detail' post.pk %}" class="comment_button"><button>Comentar</button> </a>
 
-                        <form method="POST" action="{% url 'like' post.pk %}">
+						<form method="POST" action="{% url 'like' post.pk %}">
 							{% csrf_token %}
 							<input type="hidden" name="next" value="{{ request.path }}">
 							<a class="like_button">
@@ -130,20 +135,23 @@
 								</button>
 							</a>
 						</form>
+
+						{% if request.user == post.autor %}
+
+							<div class="icon_buttons">
+                        		<a href="{% url 'post-delete' post.pk %}"><img src="{% static 'img/icon _lixo.png' %}" ></a>
+								<a href="{% url 'post-edit' post.pk %}"><img src="{% static 'img/icon_artistas.png' %}" ></a>
+							</div>
+						{% endif %}
+
 					</div>
-                </div>
-            	{% endfor %}
-			</div>
+				</div>
+            {% endfor %}
 		</div>
-
-		{% else %}
-
-		<a href="{% url 'account_login' %}">LOGIN</a>
-
-		{% endif %}
+	</div>
 
 	<!--fim corpo site-->
-<script src="js/scripts.js"></script>
-{% endblock content %}
+	<script src="js/scripts.js"></script>
+	{% endblock content %}
 </body>
 </html>

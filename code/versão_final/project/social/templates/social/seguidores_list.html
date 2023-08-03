@@ -14,17 +14,26 @@
 </head>
 
 <div class="top-pesquisa-seguidores" >
+
+    <div class="button_principal">
+        <a href="{% url 'post-list' %}"><button>Principal</button></a>
+    </div>
+
     <h5>Seguidores</h5>
 </div>
 
+{% for seguidor in seguidores %}
     <div class="box-search">
         <div class="foto_perfil-pesquisa">
+             
+            <a href="{% url 'perfil' seguidor.perfil.pk %}">
+                <img src="{{ seguidor.perfil.foto.url }}">
+            </a>
+            <p><a style="text-decoration: none" href="{% url 'perfil' seguidor.perfil.pk %}">@{{ seguidor.username }}</a></p>
 
-            {% for seguidor in seguidores %}
-            <a href="{% url 'perfil' seguidor.perfil.pk %}"><img src="{{ seguidor.perfil.foto.url }}"></a>
-            <a href="{% url 'perfil' seguidor.perfil.pk %}"><h5>@{{ seguidor.username }}</h5></a>
-            {% endfor %}
          </div>
+    </div>
+{% endfor %}
 
 {% endblock content %}
 

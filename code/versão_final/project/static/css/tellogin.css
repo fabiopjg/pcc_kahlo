@@ -38,7 +38,7 @@ body{
 }
 
 .form-box {
-    width: 70%;
+    width: 80%;
     height: 650px;
     background: rgba(111, 123, 111, 0.24);
     backdrop-filter: blur(30px);
@@ -138,4 +138,13 @@ body{
         padding: 40px;
         margin: 50px;
     } 
+}
+
+.controls {
+    width: 100%;
+}
+
+.checkbox input{
+    max-width: 10px;
+    display: inline-block;
 }
